@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'GYHUD_Example' do
+  pod 'GYHUD', :path => '../'
+
+end

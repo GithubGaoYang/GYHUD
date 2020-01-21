@@ -1,0 +1,27 @@
+{
+  "name": "GYHUD",
+  "version": "0.1.0",
+  "summary": "A short description of GYHUD.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/GithubGaoYang/GYHUD",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "高扬": "gaoyangzhongguo@foxmail.com"
+  },
+  "source": {
+    "git": "https://github.com/GithubGaoYang/GYHUD.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "GYHUD/Classes/**/*",
+  "dependencies": {
+    "MBProgressHUD": [
+      "~> 1.2.0"
+    ]
+  }
+}

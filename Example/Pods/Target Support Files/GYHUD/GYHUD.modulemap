@@ -1,0 +1,6 @@
+framework module GYHUD {
+  umbrella header "GYHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

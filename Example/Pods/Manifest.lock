@@ -1,0 +1,23 @@
+PODS:
+  - GYHUD (0.1.0):
+    - MBProgressHUD (~> 1.2.0)
+  - MBProgressHUD (1.2.0)
+
+DEPENDENCIES:
+  - GYHUD (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - MBProgressHUD
+
+EXTERNAL SOURCES:
+  GYHUD:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GYHUD: 2db544ed813024634856521c5631a24874b667b3
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+
+PODFILE CHECKSUM: 6e02815d393bc705da7aa2fd1e497e744de9e78d
+
+COCOAPODS: 1.8.4
