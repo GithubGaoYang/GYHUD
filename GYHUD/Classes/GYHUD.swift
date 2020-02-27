@@ -36,6 +36,17 @@ public final class GYHUD {
         }
     }
 
+    private static var _defaultType: GYHUDType = .loadingWith(type: .ballRotateChase, color: UIColor.lightGray)
+
+    public static var defaultType: GYHUDType {
+        get {
+            return _defaultType
+        }
+        set {
+            _defaultType = newValue
+        }
+    }
+
     private static var _bezelViewColor: UIColor? = UIColor.init(white: 0.5, alpha: 0.2)
 
     public static var bezelViewColor: UIColor? {
@@ -90,14 +101,14 @@ public final class GYHUD {
 
     // MARK: Public methods, PKHUD based
     public static func show(
-        _ type: GYHUDType = .loadingWith(type: .ballRotateChase, color: UIColor.lightGray),
+        _ type: GYHUDType? = nil,
         title: String? = nil,
         subtitle: String? = nil,
         onView view: UIView? = nil) {
 
         GYHUD.show(on: view)
                 
-        switch type {
+        switch type ?? self.defaultType {
         case .loading:
             GYHUD.shared?.mode = .indeterminate
         case .label:
