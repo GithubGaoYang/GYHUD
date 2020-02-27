@@ -35,10 +35,29 @@ public final class GYHUD {
             _shared = newValue
         }
     }
-    
+
+    private static var _bezelViewColor: UIColor? = UIColor.init(white: 0.5, alpha: 0.2)
+
+    public static var bezelViewColor: UIColor? {
+        get {
+            return _bezelViewColor ?? GYHUD.shared?.bezelView.color ?? MBProgressHUD.init().bezelView.color
+        }
+        set {
+            _bezelViewColor = newValue
+            GYHUD.shared?.bezelView.color = newValue
+        }
+    }
+
+    private static var _backgroundColor: UIColor? = UIColor.init(white: 0.5, alpha: 0.2)
+
     public static var backgroundColor: UIColor? {
-        get { return GYHUD.shared?.backgroundView.color ?? MBProgressHUD.init().backgroundView.color }
-        set { GYHUD.shared?.backgroundView.color = newValue }
+        get {
+            return _backgroundColor ?? GYHUD.shared?.backgroundView.color ?? MBProgressHUD.init().backgroundView.color
+        }
+        set {
+            _backgroundColor = newValue
+            GYHUD.shared?.backgroundView.color = newValue
+        }
     }
     
     public static var dimsBackground: Bool {
@@ -172,8 +191,8 @@ private extension GYHUD {
         GYHUD.shared?.removeFromSuperViewOnHide = true
         GYHUD.shared?.label.numberOfLines = 0
         GYHUD.shared?.detailsLabel.numberOfLines = 0
-        GYHUD.shared?.bezelView.color = UIColor.init(white: 0.5, alpha: 0.2)
-        GYHUD.shared?.backgroundView.color = UIColor.init(white: 0.5, alpha: 0.2)
+        GYHUD.shared?.bezelView.color = bezelViewColor
+        GYHUD.shared?.backgroundView.color = self.backgroundColor
 
         return GYHUD.shared
 
