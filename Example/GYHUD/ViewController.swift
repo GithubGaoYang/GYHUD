@@ -34,7 +34,8 @@ class ViewController: UITableViewController {
         
         examples = [
             [
-                GYExample(title: "Indeterminate mode", selector: #selector(indeterminateExample)),
+                GYExample(title: "loading mode", selector: #selector(indeterminateExample)),
+                GYExample(title: "Loading with type mode", selector: #selector(loadingWithTypeExample)),
                 GYExample(title: "With label", selector: #selector(labelExample)),
                 GYExample(title: "With details label", selector: #selector(detailsLabelExample))
             ],
@@ -46,6 +47,8 @@ class ViewController: UITableViewController {
             [
                 GYExample(title: "Text only", selector: #selector(textExample)),
                 GYExample(title: "Custom view", selector: #selector(customViewExample)),
+                GYExample(title: "Success view", selector: #selector(successExample)),
+                GYExample(title: "Error view", selector: #selector(errorExample)),
                 GYExample(title: "With action button", selector: #selector(cancelationExample)),
                 GYExample(title: "Mode switching", selector: #selector(modeSwitchingExample))
             ],
@@ -89,7 +92,27 @@ extension ViewController {
             })
         })
     }
-    
+
+    @objc func loadingWithTypeExample() {
+        // Show the HUD on the root view (self.view is a scrollable table view and thus not suitable,
+        // as the HUD would move with the content as we scroll).
+        GYHUD.show(.loadingWith(type: .ballRotateChase), onView: navigationController?.view)
+        
+        // Fire off an asynchronous task, giving UIKit the opportunity to redraw wit the HUD added to the
+        // view hierarchy.
+        DispatchQueue.global(qos: .default).async(execute: {
+            
+            // Do something useful in the background
+            self.doSomeWork()
+            
+            // IMPORTANT - Dispatch back to the main thread. Always access UI
+            // classes (including GYHUD) on the main thread.
+            DispatchQueue.main.async(execute: {
+                GYHUD.hide()
+            })
+        })
+    }
+
     @objc func labelExample() {
         // Set the label text.
         GYHUD.show(.loading, title: NSLocalizedString("Loading...", comment: "HUD loading title"), onView: navigationController?.view)
@@ -211,6 +234,16 @@ extension ViewController {
         GYHUD.shared?.isSquare = true
         
         GYHUD.hide(afterDelay: 3)
+    }
+    
+    @objc func successExample() {
+        // Optional label text.
+        GYHUD.flash(.success, title: nil)
+    }
+    
+    @objc func errorExample() {
+        // Optional label text.
+        GYHUD.flash(.error, title: nil)
     }
     
     @objc func textExample() {

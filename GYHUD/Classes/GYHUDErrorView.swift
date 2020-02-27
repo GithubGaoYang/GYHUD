@@ -46,9 +46,9 @@ class GYHUDErrorView: UIView {
         dashTwoLayer.position = layer.position
         
         self.startAnimation()
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.35) {
-//            self.stopAnimation()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.35) {
+            self.stopAnimation()
+        }
 
     }
 

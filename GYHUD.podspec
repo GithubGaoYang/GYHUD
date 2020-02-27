@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GYHUD'
-  s.version          = '0.0.1'
+  s.version          = '0.1.0'
   s.summary          = 'An iOS activity indicator view based on MBProgressHUD..'
   s.description      = <<-DESC
                       GYHUD is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels while work is being done in a background thread.
@@ -34,4 +34,6 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'MBProgressHUD',  '~> 1.2.0'
+  s.dependency 'NVActivityIndicatorView'
+
 end
