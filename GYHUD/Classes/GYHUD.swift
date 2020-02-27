@@ -11,7 +11,7 @@ import MBProgressHUD
 
 public enum GYHUDType {
     case loading
-    case loadingWith(type: GYHUDLoadingType)
+    case loadingWith(type: GYHUDLoadingType, color: UIColor = UIColor.lightGray)
     case label
     case image(UIImage?)
     case success
@@ -90,7 +90,7 @@ public final class GYHUD {
 
     // MARK: Public methods, PKHUD based
     public static func show(
-        _ type: GYHUDType = .loadingWith(type: .ballRotateChase),
+        _ type: GYHUDType = .loadingWith(type: .ballRotateChase, color: UIColor.lightGray),
         title: String? = nil,
         subtitle: String? = nil,
         onView view: UIView? = nil) {
@@ -111,9 +111,9 @@ public final class GYHUD {
         case .image(let image):
             GYHUD.shared?.mode = .customView
             GYHUD.shared?.customView = UIImageView(image: image)
-        case .loadingWith(type: let type):
+        case .loadingWith(type: let type, color: let color):
             GYHUD.shared?.mode = .customView
-            GYHUD.shared?.customView = GYHUDLoadingView(frame: CGRect(x: 0, y: 0, width: 40, height: 40), type: type, color: .white, padding: nil)
+            GYHUD.shared?.customView = GYHUDLoadingView(frame: CGRect(x: 0, y: 0, width: 40, height: 40), type: type, color: color, padding: nil)
 
         }
         
