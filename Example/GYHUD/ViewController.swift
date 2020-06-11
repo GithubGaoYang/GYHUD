@@ -76,6 +76,7 @@ extension ViewController {
     @objc func indeterminateExample() {
         // Show the HUD on the root view (self.view is a scrollable table view and thus not suitable,
         // as the HUD would move with the content as we scroll).
+        GYHUD.graceTime = 1
         GYHUD.show(.loading, onView: navigationController?.view)
         
         // Fire off an asynchronous task, giving UIKit the opportunity to redraw wit the HUD added to the
@@ -89,6 +90,7 @@ extension ViewController {
             // classes (including GYHUD) on the main thread.
             DispatchQueue.main.async(execute: {
                 GYHUD.hide()
+                GYHUD.graceTime = 0
             })
         })
     }

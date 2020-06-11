@@ -47,6 +47,18 @@ public final class GYHUD {
         }
     }
 
+    private static var _graceTime: TimeInterval? = nil
+
+    public static var graceTime: TimeInterval {
+        get {
+            return _graceTime ?? GYHUD.shared?.graceTime ?? MBProgressHUD.init().graceTime
+        }
+        set {
+            _graceTime = newValue
+            GYHUD.shared?.graceTime = newValue
+        }
+    }
+    
     private static var _bezelViewColor: UIColor? = UIColor.init(white: 0.5, alpha: 0.2)
 
     public static var bezelViewColor: UIColor? {
@@ -198,13 +210,16 @@ private extension GYHUD {
         if GYHUD.shared?.superview != view {
             GYHUD.shared?.hide(animated: true)
         }
-        GYHUD.shared = MBProgressHUD.showAdded(to: view, animated: true)
+        GYHUD.shared = MBProgressHUD.init(view: view)
         GYHUD.shared?.removeFromSuperViewOnHide = true
         GYHUD.shared?.label.numberOfLines = 0
         GYHUD.shared?.detailsLabel.numberOfLines = 0
+        GYHUD.shared?.graceTime = graceTime
         GYHUD.shared?.bezelView.color = bezelViewColor
         GYHUD.shared?.backgroundView.color = self.backgroundColor
-
+        view.addSubview(GYHUD.shared!)
+        GYHUD.shared?.show(animated: true)
+        
         return GYHUD.shared
 
     }
